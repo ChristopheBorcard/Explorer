@@ -185,13 +185,19 @@ final class ElasticIndexAdapter implements IndexAdapterInterface
     {
         $body = [];
 
-        if (!empty($settings)) {
-            $body['settings'] = $settings;
-        }
-
         $body['mappings'] = [
             'properties' => $properties,
         ];
+
+        if (!empty($settings)) {
+            if (isset($settings['_source'])) {
+                $body['mappings']['_source'] = $settings['_source'];
+                unset($settings['_source']);
+            }
+
+            $body['settings'] = $settings;
+        }
+
 
         $this->client->indices()->create([
             'index' => $index,
