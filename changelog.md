@@ -6,6 +6,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## [3.12.0]
+
+### Added
+
+- Support for `missing` in sort order
+
+## [3.11.0]
+
+### Added
+- Support for PHP8.3
+
+## [3.10.0]
+
+### Added
+- The configurable logger may now be a channel name.
+
 ## [3.9.0]
 
 ### Changed
