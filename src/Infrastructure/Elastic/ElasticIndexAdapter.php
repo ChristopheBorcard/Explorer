@@ -190,9 +190,11 @@ final class ElasticIndexAdapter implements IndexAdapterInterface
         ];
 
         if (!empty($settings)) {
-            if (isset($settings['_source'])) {
-                $body['mappings']['_source'] = $settings['_source'];
-                unset($settings['_source']);
+            foreach (['_source', 'dynamic'] as $setting_to_mapping){
+                if (isset($settings[$setting_to_mapping])) {
+                    $body['mappings'][$setting_to_mapping] = $settings[$setting_to_mapping];
+                    unset($settings[$setting_to_mapping]);
+                }
             }
 
             $body['settings'] = $settings;
